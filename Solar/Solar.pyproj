@@ -22,7 +22,27 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Workers\Gif-Maker.py" />
+    <Compile Include="Workers\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Worker\package1\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Workers\MinMax.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Workers\workers.py" />
+    <Compile Include="Workers\worker.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Solar.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Workers\" />
+    <Folder Include="package1\" />
+    <Folder Include="Worker\" />
+    <Folder Include="Worker\package1\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
