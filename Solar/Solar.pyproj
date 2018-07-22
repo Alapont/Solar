@@ -40,7 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Workers\" />
-    <Folder Include="package1\" />
     <Folder Include="Worker\" />
     <Folder Include="Worker\package1\" />
   </ItemGroup>
