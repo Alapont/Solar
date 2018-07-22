@@ -3,7 +3,7 @@ class minMax(object):
     def start(self): 
         self.mins=['nan','nan','nan','nan','nan','nan','nan','nan'];
         self.maxs=['nan','nan','nan','nan','nan','nan','nan','nan'];
-
+        
     def input(self, input):
         try:
             for i in range (0, 7):

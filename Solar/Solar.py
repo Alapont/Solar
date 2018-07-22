@@ -76,19 +76,20 @@ def createArray(r, num=0):
 
 def getDataCsv(route):
     #gets data and returns it
-    ext=".csv";
-    union = workers.Workers();
-    union.start(MinMax.minMax());
+    ext=".csv"
+    union = workers.Workers()
+    union.start(MinMax.minMax())
     for i in range (2, 12):
-        index = str(i) if i>9 else '0'+str(i);
-        data=route+"2015"+index+ext;
-        print("getting "+ data);
+        index = str(i) if i>9 else '0'+str(i)
+        data=route+"2015"+index+ext
+        print("getting "+ data)
         with open(data, encoding='utf-8') as f:
+            union.start()
             reader = csv.reader(f)
             for i, row in enumerate(reader):
-                result=createArray(row,i);
+                result=createArray(row,i)
                 if result != None :
-                    union.input(result);
+                    union.input(result)
         union.results();
             
     #There are reedings \ ^^ /
