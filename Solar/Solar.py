@@ -24,7 +24,7 @@ def isDay(timeStamp,dawn=10,dusk=20):
 
 
 
-def createArray(r):
+def createArray(r,i):
     #used to get only the usefull data and errase night data
     #should get deprecated
     if (r[0]=='TIMESTAMP'):
@@ -32,16 +32,16 @@ def createArray(r):
         #print("Estamos en un header y hacemos cosas de Header")
     elif isDay(r[0]): #need to skip rows from night¿setted by param?
         #print("La fila es la numero " + str(num) +" Timestamp:"+r[0]);
-        A=munch(r[1]);             #ARFISOL
-        B=munch(r[2]);             #BSRN
-        C=munch(r[3]);             #CESA
-        D=munch(r[4]);             #DISS
-        K=munch(r[5]);             #KONTAS
-        P=munch(r[6]);             #PSA
-        T=dualMunch(r[7],r[8]);    #TSA
+        #A=munch(r[1]);             #ARFISOL
+        #B=munch(r[2]);             #BSRN
+        #C=munch(r[3]);             #CESA
+        #D=munch(r[4]);             #DISS
+        #K=munch(r[5]);             #KONTAS
+        #P=munch(r[6]);             #PSA
+        #T=dualMunch(r[7],r[8]);    #TSA
         #ahora nos toca ordenar los datos (mas o menos) físicamente(~ish)
         #print("A: %4d, B: %4d, C: %4d, D: %4d, K: %4d, P: %4d, T: %4d" % (A,B,C,D,K,P,T));
-        return r[1:8];
+        return r[0:8];
     else: 
        #debería devolver algo que le diga al de arriba que no procese la fila
        return None;

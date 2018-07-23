@@ -23,6 +23,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Workers\Gif-Maker.py" />
+    <Compile Include="Workers\csv-maker.py" />
     <Compile Include="Workers\__init__.py">
       <SubType>Code</SubType>
     </Compile>

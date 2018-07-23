@@ -6,9 +6,9 @@ class minMax(object):
         
     def input(self, input):
         try:
-            for i in range (0, 7):
-                self.mins[i]=_min(self.mins[i],input[i])
-                self.maxs[i]=_max(self.maxs[i],input[i])
+            for i in range (1, 8):
+                self.mins[i-1]=_min(self.mins[i],input[i])
+                self.maxs[i-1]=_max(self.maxs[i],input[i])
         except Exception:
             print("error");
 
