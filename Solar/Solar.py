@@ -21,39 +21,12 @@ def isDay(timeStamp,dawn=10,dusk=20):
     hours,mins,secs=hour.split(':');
     return dawn <= int(hours) < dusk;
 
-def dualMunch(a,b,min=0,max=1024,range=256):
-    #checks if a or b is '' munching the otherone and semisum of both if possible (and min if both '')
-    if(a=='' and b==''): #really python? AND???
-        return min;
-    if(a=='' or b==''): #really python? AND???
-        #at least one should be not null
-        if (a==''):
-            return munch(b,min,max,range);
-        else:
-            return munch(a,min,max,range);
-    else:#trilema prepare data by str->float->operate->munch no last conversion by magic casting
-        A=float(a.replace(',','.'));
-        B=float(b.replace(',','.'));
-        return munch(str((A+B)/2),min,max,range);
-
-def munch(number,min=0,max=1024,range=256):
-    #munches numbers to prepare them to be used as pixels
-    #if the number exceeds min or max it gets truncated.
-    #its just a 3-rule casted to int
-    if number == '':
-        return 0;
-    else:
-        pixel=float(number.replace(',','.')); #expects . as decimal separator
-        if pixel <min:
-            return min;
-        elif pixel > max:
-            return max;
-        else:
-            step=(max/range);
-            return int(round((pixel/step),0));
 
 
-def createArray(r, num=0):
+
+def createArray(r):
+    #used to get only the usefull data and errase night data
+    #should get deprecated
     if (r[0]=='TIMESTAMP'):
         pass
         #print("Estamos en un header y hacemos cosas de Header")
@@ -70,12 +43,12 @@ def createArray(r, num=0):
         #print("A: %4d, B: %4d, C: %4d, D: %4d, K: %4d, P: %4d, T: %4d" % (A,B,C,D,K,P,T));
         return r[1:8];
     else: 
-       return None;
        #debería devolver algo que le diga al de arriba que no procese la fila
+       return None;
        
 
 def getDataCsv(route):
-    #gets data and returns it
+    #gets data and pass it to the worker system through the union worker
     ext=".csv"
     union = workers.Workers()
     union.start(MinMax.minMax())
@@ -87,9 +60,12 @@ def getDataCsv(route):
             union.start()
             reader = csv.reader(f)
             for i, row in enumerate(reader):
-                result=createArray(row,i)
-                if result != None :
-                    union.input(result)
+                if row[0]=='TIMESTAMP':
+                    pass
+                else:
+                    result=createArray(row,i)
+                    if isDay(row[0]):
+                        union.input(result)
         union.results();
             
     #There are reedings \ ^^ /
