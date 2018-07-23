@@ -15,7 +15,7 @@ from Workers import workers,MinMax;
 #  |80:               понт  |
 #  +------------------------+
 
-def isDay(timeStamp,dawn=10,dusk=20):
+def isDay(timeStamp,dawn=6,dusk=23):
     #for now will just check if timestam is between dawn and dusk
     day,hour=timeStamp.split(' ');
     hours,mins,secs=hour.split(':');
@@ -30,7 +30,7 @@ def createArray(r,i):
     if (r[0]=='TIMESTAMP'):
         pass
         #print("Estamos en un header y hacemos cosas de Header")
-    elif isDay(r[0]): #need to skip rows from night¿setted by param?
+    elif isDay(r[0]):       #need to skip rows from night¿setted by param?
         #print("La fila es la numero " + str(num) +" Timestamp:"+r[0]);
         #A=munch(r[1]);             #ARFISOL
         #B=munch(r[2]);             #BSRN
@@ -41,6 +41,11 @@ def createArray(r,i):
         #T=dualMunch(r[7],r[8]);    #TSA
         #ahora nos toca ordenar los datos (mas o menos) físicamente(~ish)
         #print("A: %4d, B: %4d, C: %4d, D: %4d, K: %4d, P: %4d, T: %4d" % (A,B,C,D,K,P,T));
+        R=[None]*(len(r))
+        R[0]=r[0]
+        for i in range (1,8):
+            #cleaning the data to use floats for everything
+            R[i]= float(r[i].replace(',','.')) if r[i]!='' else None
         return r[0:8];
     else: 
        #debería devolver algo que le diga al de arriba que no procese la fila
