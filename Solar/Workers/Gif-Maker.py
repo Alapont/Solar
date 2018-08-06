@@ -2,12 +2,16 @@ class gifMaker(object):
     """worker to make a gif from the data"""
     def start(self): 
         self.array
-        self.resultmaker=self._results_gif(self);
+        self.resultmaker=self._results_gif(self)
     def input(self, input):
+        munchedVars=[]
         #fill array
+        for i,elem in input[1:]:
+            munchedVars[i]=_munch(elem)
+        _pic(_grid(munchedVars))
         #take snapshot
-        pass
-    def results(self):
+
+    def results(self,destiny):
         #other results may be used
         return self.resultmaker
 
@@ -33,7 +37,7 @@ class gifMaker(object):
             B=float(b.replace(',','.'));
             return munch(str((A+B)/2),min,max,range);
 
-    def _munch(number,min=0,max=1000,range=256):
+    def _munch(number=0,min=0,max=1000,range=256):
         #munches numbers to prepare them to be used as pixels
         #if the number exceeds min or max it gets truncated.
         #its just a 3-rule casted to int
@@ -48,3 +52,28 @@ class gifMaker(object):
             else:
                 step=(max/range);
                 return int(round((pixel/step),0));
+
+    def _grid(stations):
+        A=stations[0]
+        B=stations[1]
+        C=stations[2]
+        D=stations[3]
+        K=stations[4]
+        P=stations[5]
+        T=stations[6]
+        grid=[
+            [D,D,D,D,D,D,D,D,D,K],
+            [C,D,D,D,D,D,D,D,K,K],
+            [C,C,D,D,D,D,D,K,K,K],
+            [C,C,C,C,D,D,K,K,K,K],
+            [C,C,C,C,C,D,K,K,K,K],
+            [C,C,C,C,C,T,T,K,K,K],
+            [B,B,C,C,T,T,T,T,K,K],
+            [B,B,B,C,P,T,T,T,T,K],
+            [B,B,B,P,P,P,A,A,T,T],
+            [B,B,B,P,P,P,P,A,A,A],
+            ]
+        return grid
+
+    def _pic(grid):
+        pass

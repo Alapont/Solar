@@ -1,8 +1,8 @@
 class Worker(object):
     """Worker mashup recieves data as multiple inputs and does something"""
-    def start(): None;
-    def input(data): None;
-    def results(): None;
+    def start(self, config): pass;
+    def input(self, data): return data;
+    def results(self, destiny): pass;
 
     #good ol ASCII-UML
     """

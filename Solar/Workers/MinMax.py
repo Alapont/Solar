@@ -8,10 +8,10 @@ class minMax(object):
         self._trys=0;
         self._entries=0;
         
-    def input(self, In):
+    def input(self, data):
         #for each row compares it to local mins and max and replaces if needed
         self._trys+=1
-        input=In[1:] #avoids timestamp
+        input=data[1:] #avoids timestamp
         try:
             for i in range (0, len(input)):
                 self._mins[i]=_min(self._mins[i],input[i])
@@ -19,8 +19,8 @@ class minMax(object):
         except Exception:
             print("error");
         self._entries +=1
-
-    def results(self):
+        return data
+    def results(self,destiny):
         #for now is just a proof of work and a results print
         print("Days processed: "+str(self._trys)+"/"+str(self._entries)+" "+str(self._trys/self._entries*100)+"%")
         print("mins: "+str(self._mins));

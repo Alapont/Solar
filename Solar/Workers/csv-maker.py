@@ -1,6 +1,6 @@
 from Workers import worker
 class CsvMaker(worker):
-    #gets a lot of workers and serializes them to work united as one
+    #gets data and stores it to a csv
     def start(self,fileName=None,headder="TIMESTAMP,ARFISOL,BSRN,CESA,DISS,KONTAS,PSA,TSA-1,TSA-2,"):
         if fileName == None:
             self=None #seppuku
@@ -8,8 +8,9 @@ class CsvMaker(worker):
             self._fileName=fileName;
     def input(self,data):
         with open(self._fileName, 'a') as fd:
-          fd.write(_buildLine(data))
-    def results(self):
+            fd.write(_buildLine(data))
+        return data
+    def results(self,destiny):
         #if one file is opened for the whole writting duration, close it.
         #multiple oppenings are concerning
         pass
