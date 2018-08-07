@@ -1,25 +1,29 @@
+import tempfile
+import imageio
 class gifMaker(object):
     """worker to make a gif from the data"""
+    """tengo 2 opciones, una es la de almacenar TODOS los datos y otra almacenarlso en disco"""
     def start(self): 
-        self.array
-        self.resultmaker=self._results_gif(self)
+        self._array=[]
+        self.index=0
+        self._pics=tempfile.tempdir()
+
     def input(self, input):
         munchedVars=[]
         #fill array
         for i,elem in input[1:]:
             munchedVars[i]=_munch(elem)
-        _pic(_grid(munchedVars))
+        imageio.imwrite(_pics,str(index)+".png")
         #take snapshot
 
     def results(self,destiny):
         #other results may be used
+        with imageio.get_writer('/path/to/movie.gif', mode='I') as writer:
+            for filename in filenames:
+                image = imageio.imread(filename)
+                writer.append_data(image)
         return self.resultmaker
 
-
-    #Results set
-    def _results_gif(self):
-        #feed snapshots to gifmaker
-        pass
 
     #Utilities
     def _dualMunch(a,b,min=0,max=1000,range=256):
