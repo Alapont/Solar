@@ -25,6 +25,8 @@ class minMax(object):
         print("Days processed: "+str(self._trys)+"/"+str(self._entries)+" "+str(self._trys/self._entries*100)+"%")
         print("mins: "+str(self._mins));
         print("maxs: "+str(self._maxs));
+        
+    def addOutput(sefl, worker): pass#To-Do used instead of adding a destiny in results
 
 #utilities    
 def _min(a,b):

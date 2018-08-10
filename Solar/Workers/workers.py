@@ -15,3 +15,5 @@ class Workers(object):
     def results(self,destiny=None):
         for w in self.workers:
             w.results(destiny);
+            
+    def addOutput(sefl, worker): pass#To-Do

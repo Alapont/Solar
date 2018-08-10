@@ -24,6 +24,8 @@ class gifMaker(object):
                 writer.append_data(image)
         return self.resultmaker
 
+    
+    def addOutput(sefl, worker): pass#To-Do
 
     #Utilities
     def _dualMunch(a,b,min=0,max=1000,range=256):

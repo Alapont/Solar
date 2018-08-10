@@ -14,6 +14,8 @@ class CsvMaker(worker):
         #if one file is opened for the whole writting duration, close it.
         #multiple oppenings are concerning
         pass
+    
+    def addOutput(sefl, worker): pass#To-Do
 
     def _buildLine(atributes,timestamp='TIMESTAMP',separator=','):
         if (timestamp=='TIMESTAMP'):

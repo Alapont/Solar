@@ -1,7 +1,5 @@
 import csv;
-from Workers import workers,MinMax;
-#import png;                #Love this dual window thing in VS 
-
+from Workers import workers,MinMax,GifMaker;
 #  *------------------------+
 #  |00:  en lugar de fuego  |
 #  |01: tengo una webcam al |
@@ -31,16 +29,6 @@ def createArray(r,i):
         pass
         #print("Estamos en un header y hacemos cosas de Header")
     elif isDay(r[0]):       #need to skip rows from night¿setted by param?
-        #print("La fila es la numero " + str(num) +" Timestamp:"+r[0]);
-        #A=munch(r[1]);             #ARFISOL
-        #B=munch(r[2]);             #BSRN
-        #C=munch(r[3]);             #CESA
-        #D=munch(r[4]);             #DISS
-        #K=munch(r[5]);             #KONTAS
-        #P=munch(r[6]);             #PSA
-        #T=dualMunch(r[7],r[8]);    #TSA
-        #ahora nos toca ordenar los datos (mas o menos) físicamente(~ish)
-        #print("A: %4d, B: %4d, C: %4d, D: %4d, K: %4d, P: %4d, T: %4d" % (A,B,C,D,K,P,T));
         R=[None]*(len(r))
         R[0]=r[0]
         for i in range (1,8):
@@ -57,6 +45,7 @@ def getDataCsv(route):
     ext=".csv"
     union = workers.Workers()
     union.start(MinMax.minMax())
+    union.start(Gif-Maker.gifMaker())
     for i in range (2, 12):
         index = str(i) if i>9 else '0'+str(i)
         data=route+"2015"+index+ext
@@ -72,26 +61,13 @@ def getDataCsv(route):
                     if isDay(row[0]):
                         union.input(result)
         union.results();
-            
-    #There are reedings \ ^^ /
 
-
-
-
-def getDataXlsx(route): # doomed after 20 minutes (let me believe it has been 20 min) it wasn't wasted time
-    #open files, get data, close files, return data
-    ext=".xlsx";
-    wb=openpyxl.load_workbook(route+"201502"+ext);#file is big and no verbose T_T thats the deal with unix-like commands, no output can mean "all ok" or "crashed"
-    print("end getData");
-    #tanto se tarda en abrir un p*t* archivo de 2MB? O_O
 
 def main():
     route=r"C:\Users\pablo\OneDrive - Universidad Complutense de Madrid (UCM)\2017-18\TFG Solar\solar\\";   #\\ needed instead of just \  //really python?, really
-    #print("main");
     getDataCsv(route);
     input("Press Enter to continue...")
-    #do something with de data
-
+    
 
 
 main();
