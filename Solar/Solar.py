@@ -1,5 +1,6 @@
-import csv;
-from Workers import workers,MinMax,GifMaker;
+import csv
+from Workers import Union,MinMax#,GifMaker;
+import row
 #  *------------------------+
 #  |00:  en lugar de fuego  |
 #  |01: tengo una webcam al |
@@ -38,29 +39,31 @@ def createArray(r,i):
     else: 
        #debería devolver algo que le diga al de arriba que no procese la fila
        return None;
-       
+def pFloat(f):
+    return float(f.replace(',','.')) if f!='' else None
+
+def createDict(r,i):
+    if r[0]!='TIMESTAMP':
+        return row(r,i)
 
 def getDataCsv(route):
     #gets data and pass it to the worker system through the union worker
     ext=".csv"
-    union = workers.Workers()
+    union=Union()
     union.start(MinMax.minMax())
-    union.start(Gif-Maker.gifMaker())
-    for i in range (2, 12):
-        index = str(i) if i>9 else '0'+str(i)
-        data=route+"2015"+index+ext
-        print("getting "+ data)
-        with open(data, encoding='utf-8') as f:
-            union.start()
-            reader = csv.reader(f)
-            for i, row in enumerate(reader):
-                if row[0]=='TIMESTAMP':
-                    pass
-                else:
-                    result=createArray(row,i)
-                    if isDay(row[0]):
-                        union.input(result)
-        union.results();
+    #union.start(Gif-Maker.gifMaker())
+    data=route+"2015"+ext
+    print("getting "+ data)
+    with open(data, encoding='utf-8') as f:
+        union.start()
+        reader = csv.reader(f)
+        for i, row in enumerate(reader):
+            if row[0]=='TIMESTAMP':
+                pass
+            else:
+                result=createDict(row,i)
+                union.input(result)
+    union.results();
 
 
 def main():
@@ -68,7 +71,6 @@ def main():
     getDataCsv(route);
     input("Press Enter to continue...")
     
-
 
 main();
 # he puesto que lea un fichero que casualmente es el source del video del fuego de youtube. paso de hacer mas mágia que no me apetece una 💩

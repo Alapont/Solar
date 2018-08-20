@@ -1,5 +1,5 @@
 import tempfile
-import imageio
+#import imageio
 class gifMaker(object):
     """worker to make a gif from the data"""
     """tengo 2 opciones, una es la de almacenar TODOS los datos y otra almacenarlso en disco"""
@@ -25,7 +25,7 @@ class gifMaker(object):
         return self.resultmaker
 
     
-    def addOutput(sefl, worker): pass#To-Do
+    def addOutput(sefl, worker): pass
 
     #Utilities
     def _dualMunch(a,b,min=0,max=1000,range=256):

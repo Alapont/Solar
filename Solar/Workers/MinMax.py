@@ -1,12 +1,15 @@
 from Workers import worker
+from Solar import row
+#import row
 class minMax(object):
     """worker to know min and max in any given point of all the data providen up to that moment"""
     #to do remove all debugging data and operations
     def start(self): 
-        self._mins=['nan','nan','nan','nan','nan','nan','nan','nan'];
-        self._maxs=['nan','nan','nan','nan','nan','nan','nan','nan'];
-        self._trys=0;
-        self._entries=0;
+        self._result=[]
+        self._mins=row()
+        self._maxs=row()
+        self._trys=0
+        self._entries=0
         
     def input(self, data):
         #for each row compares it to local mins and max and replaces if needed
@@ -20,13 +23,17 @@ class minMax(object):
             print("error");
         self._entries +=1
         return data
-    def results(self,destiny):
+    def results(self):
         #for now is just a proof of work and a results print
         print("Days processed: "+str(self._trys)+"/"+str(self._entries)+" "+str(self._trys/self._entries*100)+"%")
         print("mins: "+str(self._mins));
         print("maxs: "+str(self._maxs));
+        for item in self._result:
+            item.input(_mins)
+            item.input(_maxs)
         
-    def addOutput(sefl, worker): pass#To-Do used instead of adding a destiny in results
+    def addOutput(self, next):
+        self._result.append(next)
 
 #utilities    
 def _min(a,b):

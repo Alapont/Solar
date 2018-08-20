@@ -22,6 +22,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="row.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Workers\GifMaker.py" />
     <Compile Include="Workers\csv-maker.py" />
     <Compile Include="Workers\__init__.py">
@@ -33,7 +36,7 @@
     <Compile Include="Workers\MinMax.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Workers\workers.py" />
+    <Compile Include="Workers\Union.py" />
     <Compile Include="Workers\worker.py">
       <SubType>Code</SubType>
     </Compile>
