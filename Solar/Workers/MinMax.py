@@ -1,18 +1,37 @@
 from Workers import worker
 from Solar import row
-#import row
-class minMax(worker):
+
+class MinMax(worker.Worker):
     """worker to know min and max in any given point of all the data providen up to that moment"""
-    #to do remove all debugging data and operations
-    def start(self): 
+    def __init__(self):
         self._result=[]
         self._mins=row()
         self._maxs=row()
         self._trys=0
         self._entries=0
-        
+
+    def start(self): 
+        self._mins=row()
+        self._maxs=row()
+        self._trys=0
+        self._entries=0
+
     def input(self, data):
         #for each row compares it to local mins and max and replaces if needed
+        #utilities    
+        def _min(a,b):
+            if(a in ['nan','']): return b
+            if(b in ['nan','']): return a
+            if(a<b):
+                return a;
+            return b;
+        def _max(a,b):
+            if(a in ['nan','']): return b
+            if(b in ['nan','']): return a
+            if(a>b):
+                return a;
+            return b;
+
         self._trys+=1
         input=data[1:] #avoids timestamp
         try:
@@ -23,6 +42,7 @@ class minMax(worker):
             print("error");
         self._entries +=1
         return data
+    
     def results(self):
         #for now is just a proof of work and a results print
         print("Days processed: "+str(self._trys)+"/"+str(self._entries)+" "+str(self._trys/self._entries*100)+"%")
@@ -31,21 +51,8 @@ class minMax(worker):
         for item in self._result:
             item.input(_mins)
             item.input(_maxs)
-        
+        #for r in _result:
+         #   r.input(self._maxs)
+          #  r.input(self._mins)
     def addOutput(self, next):
         self._result.append(next)
-
-#utilities    
-def _min(a,b):
-    if(a in ['nan','']): return b
-    if(b in ['nan','']): return a
-    if(a<b):
-        return a;
-    return b;
-
-def _max(a,b):
-    if(a in ['nan','']): return b
-    if(b in ['nan','']): return a
-    if(a>b):
-        return a;
-    return b;

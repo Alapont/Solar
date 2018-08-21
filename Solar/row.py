@@ -16,6 +16,9 @@ class row(object):
             "TSA2":pFloat(r[8]),
             "row":i
             }
-    
-    def get(key,default=float(0.0)):
-        return _dict.get(key,default)
+    def add(self,values):
+        for pair in values:
+            self._dict[pair[0]]=pair[1]
+        pass
+    def get(self,key,default=float(0.0)):
+        return self._dict.get(key,default)

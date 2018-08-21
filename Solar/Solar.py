@@ -48,7 +48,8 @@ def getDataCsv(route):
     #gets data and pass it to the worker system through the union worker
     ext=".csv"
     union=Union.Union()
-    union.start(MinMax.minMax())
+    m=MinMax.MinMax()
+    union.start(MinMax.MinMax())
     data=route+"2015"+ext
     print("getting "+ data)
     with open(data, encoding='utf-8') as f:
