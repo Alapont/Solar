@@ -1,7 +1,7 @@
 from Workers import worker
 from Solar import row
 #import row
-class minMax(object):
+class minMax(worker):
     """worker to know min and max in any given point of all the data providen up to that moment"""
     #to do remove all debugging data and operations
     def start(self): 

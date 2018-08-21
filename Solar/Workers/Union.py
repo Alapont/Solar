@@ -1,5 +1,6 @@
-import Workers
-class Union(object):
+from Workers import worker
+
+class Union(worker.Worker):
     #gets a lot of workers and serializes them to work united as one
     def __init__(self):
         self._workers=[];

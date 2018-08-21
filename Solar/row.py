@@ -1,3 +1,7 @@
+
+def pFloat(f):
+    return float(f.replace(',','.')) if f!='' else None
+
 class row(object):
     def __init__(self,r=['nan','nan','nan','nan','nan','nan','nan','nan','nan'],i=0):
         self._dict={

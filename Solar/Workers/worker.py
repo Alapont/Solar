@@ -1,4 +1,4 @@
-class Worker(object):
+class Worker:
     """Worker mashup recieves data as multiple inputs and does something"""
     def start(self, config): pass
     def input(self, data): return data

@@ -1,5 +1,5 @@
 import csv
-from Workers import Union,MinMax#,GifMaker;
+from Workers import worker, Union, MinMax
 import row
 #  *------------------------+
 #  |00:  en lugar de fuego  |
@@ -39,19 +39,16 @@ def createArray(r,i):
     else: 
        #debería devolver algo que le diga al de arriba que no procese la fila
        return None;
-def pFloat(f):
-    return float(f.replace(',','.')) if f!='' else None
 
 def createDict(r,i):
     if r[0]!='TIMESTAMP':
-        return row(r,i)
+        return row.row(r,i)
 
 def getDataCsv(route):
     #gets data and pass it to the worker system through the union worker
     ext=".csv"
-    union=Union()
+    union=Union.Union()
     union.start(MinMax.minMax())
-    #union.start(Gif-Maker.gifMaker())
     data=route+"2015"+ext
     print("getting "+ data)
     with open(data, encoding='utf-8') as f:
