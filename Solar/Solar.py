@@ -1,5 +1,5 @@
 import csv
-from Workers import worker, Union, MinMax, Delta
+from Workers import worker, Union, MinMax, Delta, Printer
 import row
 #  *------------------------+
 #  |00:  en lugar de fuego  |
@@ -47,21 +47,24 @@ def createDict(r,i):
 def getDataCsv(route):
     #gets data and pass it to the worker system through the union worker
     ext=".csv"
-    union=Union.Union()
-    d=delt
-    #m=MinMax.MinMax()
-    union.start(MinMax.MinMax())
+
+    u=Union.Union()
+    d=Delta.Delta()
+    p=Printer.Printer()
+    
+    u.start(d)
+
     data=route+"2015"+ext
     print("getting "+ data)
     with open(data, encoding='utf-8') as f:
-        union.start()
+        u.start()
         reader = csv.reader(f)
-        for i, row in enumerate(reader):
-            if row[0]=='TIMESTAMP':
+        for i, line in enumerate(reader):
+            if line[0]=='TIMESTAMP':
                 pass
             else:
-                result=createDict(row,i)
-                union.input(result)
+                result=createDict(line,i)
+                p.input(d.input(result))
     union.results();
 
 

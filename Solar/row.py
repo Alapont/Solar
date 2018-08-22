@@ -14,11 +14,11 @@ class row(object):
             "PSA":pFloat(r[6]),
             "TSA1":pFloat(r[7]),
             "TSA2":pFloat(r[8]),
-            "row":i
+            "rowNum":i
             }
     def add(self,values):
         for pair in values:
             self._dict[pair[0]]=pair[1]
-        pass
+        return self
     def get(self,key,default=float(0.0)):
         return self._dict.get(key,default)

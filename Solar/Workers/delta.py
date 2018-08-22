@@ -3,21 +3,34 @@ import row
 
 class Delta(worker.Worker):
     """appends increment"""
-    def start(self, config):
+    def start(self, config=None):
         self._last=None
     def input(self, data):
+        def delta(cur,last,atribute):
+            pass
+            a=cur.get(atribute)
+            b=last.get(atribute)
+            if None in [a,b]:
+                return None
+            else:
+                return a-b
+            
+
         if self._last!=None :
             delta=[
-                ["dARFISOL",data.get("ARFISOL")-self._last.__getattribute__("ARFISOL")],
-                ["dBSRN",data.get("BSRN")-self._last.__getattribute__("BSRN")],
-                ["dCESA",data.get("CESA")-self._last.__getattribute__("CESA")],
-                ["dDISS",data.get("DISS")-self._last.__getattribute__("DISS")],
-                ["dKONTAS",data.get("KONTAS")-self._last.__getattribute__("KONTAS")],
-                ["dPSA",data.get("PSA")-self._last.__getattribute__("PSA")],
-                ["dTSA1",data.get("TSA1")-self._last.__getattribute__("TSA1")],
-                ["dTSA2",data.get("TSA2")-self._last.__getattribute__("TSA2")]
+                ["dARFISOL",delta(data,self._last,"ARFISOL")],
+                ["dBSRN",delta(data,self._last,"BSRN")],
+                ["dCESA",delta(data,self._last,"CESA")],
+                ["dDISS",delta(data,self._last,"DISS")],
+                ["dKONTAS",delta(data,self._last,"KONTAS")],
+                ["dPSA",delta(data,self._last,"PSA")],
+                ["dTSA1",delta(data,self._last,"TSA1")],
+                ["dTSA2",delta(data,self._last,"TSA2")]
             ]
-            new,self._last=_last.add(delta),data
+            new=self._last.add(delta)
+            self._last=data
             return new
+        else: 
+            self._last=data
     def results(self): pass
     def addOutput(sefl, worker): pass
