@@ -93,7 +93,6 @@ class Delta(worker.Worker):
                 self._last.get("dTSA1"),
                 self._last.get("dTSA2"),
                 ])
-            
             calc=calc+[["sigma increment",ds]]
         
         
