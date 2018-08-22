@@ -1,5 +1,5 @@
 import csv
-from Workers import worker, Union, MinMax
+from Workers import worker, Union, MinMax, Delta
 import row
 #  *------------------------+
 #  |00:  en lugar de fuego  |
@@ -48,7 +48,8 @@ def getDataCsv(route):
     #gets data and pass it to the worker system through the union worker
     ext=".csv"
     union=Union.Union()
-    m=MinMax.MinMax()
+    d=delt
+    #m=MinMax.MinMax()
     union.start(MinMax.MinMax())
     data=route+"2015"+ext
     print("getting "+ data)

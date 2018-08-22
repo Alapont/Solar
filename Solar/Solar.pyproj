@@ -25,6 +25,9 @@
     <Compile Include="row.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Workers\Delta.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Workers\GifMaker.py" />
     <Compile Include="Workers\csv-maker.py" />
     <Compile Include="Workers\__init__.py">

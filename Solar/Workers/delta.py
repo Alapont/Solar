@@ -18,5 +18,6 @@ class Delta(worker.Worker):
                 ["dTSA2",data.get("TSA2")-self._last.__getattribute__("TSA2")]
             ]
             new,self._last=_last.add(delta),data
+            return new
     def results(self): pass
     def addOutput(sefl, worker): pass
