@@ -1,5 +1,5 @@
 import csv
-from Workers import worker, Union, MinMax, Delta, Printer
+from Workers import worker, Union, MinMax, Delta, Printer, Decision
 import row
 #  *------------------------+
 #  |00:  en lugar de fuego  |
@@ -51,8 +51,10 @@ def getDataCsv(route):
     u=Union.Union()
     d=Delta.Delta()
     p=Printer.Printer()
-    
+    decision=Decision.Decision()
+        
     u.start(d)
+    u.start(decision)
 
     data=route+"2015"+ext
     print("getting "+ data)
@@ -64,7 +66,7 @@ def getDataCsv(route):
                 pass
             else:
                 result=createDict(line,i)
-                p.input(d.input(result))
+                p.input(decision.input(d.input(result)))
     union.results();
 
 
