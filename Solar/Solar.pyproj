@@ -35,7 +35,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Workers\GifMaker.py" />
-    <Compile Include="Workers\csv-maker.py" />
+    <Compile Include="Workers\CsvMaker.py" />
     <Compile Include="Workers\__init__.py">
       <SubType>Code</SubType>
     </Compile>

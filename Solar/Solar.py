@@ -1,6 +1,7 @@
 import csv
-from Workers import worker, Union, MinMax, Delta, Printer, Decision
+from Workers import worker, Union, MinMax, Delta, Printer, Decision, CsvMaker
 import row
+import sys
 #  *------------------------+
 #  |00:  en lugar de fuego  |
 #  |01: tengo una webcam al |
@@ -16,6 +17,7 @@ import row
 
 def isDay(timeStamp,dawn=6,dusk=23):
     #for now will just check if timestam is between dawn and dusk
+    #deprecated
     day,hour=timeStamp.split(' ');
     hours,mins,secs=hour.split(':');
     return dawn <= int(hours) < dusk;
@@ -25,7 +27,7 @@ def isDay(timeStamp,dawn=6,dusk=23):
 
 def createArray(r,i):
     #used to get only the usefull data and errase night data
-    #should get deprecated
+    #deprecated
     if (r[0]=='TIMESTAMP'):
         pass
         #print("Estamos en un header y hacemos cosas de Header")
@@ -52,7 +54,9 @@ def getDataCsv(route):
     d=Delta.Delta()
     p=Printer.Printer()
     decision=Decision.Decision()
-        
+    c=CsvMaker.CsvMaker()
+    
+    c.start(route+"output2015.csv")
     u.start(d)
     u.start(decision)
 
@@ -66,12 +70,16 @@ def getDataCsv(route):
                 pass
             else:
                 result=createDict(line,i)
-                p.input(decision.input(d.input(result)))
-    union.results();
+                c.input(decision.input(d.input(result)))
+    u.results();
 
 
 def main():
-    route=r"C:\Users\pablo\OneDrive - Universidad Complutense de Madrid (UCM)\2017-18\TFG Solar\solar\\";   #\\ needed instead of just \  //really python?, really
+    if (len(sys.argv)<2):
+        route=r"C:\Users\pablo\OneDrive - Universidad Complutense de Madrid (UCM)\2017-18\TFG Solar\solar\\";   #\\ needed instead of just \  //really python?, really
+        input("expecting csv in:\n"+route)
+    else:
+        route=sys.argv[1]
     getDataCsv(route);
     input("Press Enter to continue...")
     
