@@ -20,6 +20,7 @@ class Delta(worker.Worker):
             return False
         def delta(cur,last,atribute):
             """increment between 2 values (if possible)"""
+
             a=cur.get(atribute)
             b=last.get(atribute)
             if None in [a,b]:
@@ -94,7 +95,6 @@ class Delta(worker.Worker):
                 self._last.get("dTSA2"),
                 ])
             calc=calc+[["sigma increment",ds]]
-        
         
         self._last=data.add(calc)
         return self._last

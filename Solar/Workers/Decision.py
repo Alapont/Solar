@@ -2,8 +2,8 @@ from Workers import worker
 class Decision(worker.Worker):
     """appends a description of the state"""
     def start(self, config={}):   
-        self._night_cloud=config.get("night-cloud",100.0)
-        self._cloud_sun=config.get("cloud-sun",600.0)
+        self._night_cloud=config.get("night-cloud",200.0)
+        self._cloud_sun=config.get("cloud-sun",550.0)
         self._deviation=config.get("deviation",100.0)
         self._change_speed=config.get("change-speed",0.0)
 
