@@ -51,13 +51,13 @@ def getDataCsv(route):
     ext=".csv"
 
     u=Union.Union()
-    d=Delta.Delta()
+    delta=Delta.Delta()
     p=Printer.Printer()
     decision=Decision.Decision()
     c=CsvMaker.CsvMaker()
     
     c.start(route+"output2015.csv")
-    u.start(d)
+    delta.start()
     u.start(decision)
 
     data=route+"2015"+ext
@@ -70,8 +70,9 @@ def getDataCsv(route):
                 pass
             else:
                 result=createDict(line,i)
-                c.input(decision.input(d.input(result)))
-    u.results();
+                c.input(decision.input(delta.input(result)))
+    u.results()
+    c.results(None)
 
 
 def main():
